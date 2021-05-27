@@ -189,3 +189,61 @@ foreach my $file (@files) {
     $count++;
     print $count . " : " . $file . "\n";
 }
+
+print "ARGV ========================================\n";
+print "$#ARGV\n";
+
+if ($#ARGV < 0) {
+    die "Supply a file name, please.\n";
+}
+if ($#ARGV > 0) {
+    die "Too many parameter.\n";
+}
+
+$fileName = shift(@ARGV);
+print $fileName . "\n";
+if (-d $fileName) {die "$fileName is a directory.\n";}
+-e $fileName || die "$fileName is not exist.\n";
+-T $fileName || die "$fileName is not a text file.\n";
+
+open(fileHandle, $fileName) || die "Cannot open $fileName.\n";
+while (my $aLine = <fileHandle>) {
+    print $aLine;
+}
+close(fileHandle);
+
+print "UNLESS ========================================\n";
+my $lessArray = 3;
+unless ($lessArray == 5) { # false 이면
+    print "Hey\n";
+}
+
+print "Yes 3 \n" if $lessArray == 3;
+print "Shut up !\n" unless $lessArray == 3;
+
+print "ITERATOR ========================================\n";
+for (1 .. 50) {
+    print $_ . " ";
+}
+print "\n";
+for (1 .. 10, " hello ", "world ", "again\n") {
+    print $_ . " ";
+}
+for (my $elem = 0; $elem <= $#array; $elem++) {
+    print $array[$elem];
+}
+
+my $i = 0;
+while ($i < 109) {
+    print "! ";
+    $i++;
+}
+$i = 0;
+until ( $i >= 109 )
+{
+    print "- ";
+    $i++;
+}
+
+# do while, do until pass
+# next, last redo pass
