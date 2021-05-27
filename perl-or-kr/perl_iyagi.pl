@@ -238,9 +238,9 @@ while ($i < 109) {
     print "! ";
     $i++;
 }
+print "\n";
 $i = 0;
-until ( $i >= 109 )
-{
+until ($i >= 109) {
     print "- ";
     $i++;
 }
